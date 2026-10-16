@@ -136,8 +136,7 @@ CSS = """
 
 
 def build_ui(default_model: str = "auto"):
-    with gr.Blocks(title="Limpieza de Audio IA — WAV 16kHz + ClearVoice",
-                   theme=gr.themes.Soft(), css=CSS) as demo:
+    with gr.Blocks(title="Limpieza de Audio IA — WAV 16kHz + ClearVoice") as demo:
         gr.Markdown(
             "# 🎙️ Limpieza de Audio con IA\n"
             "**Pipeline:** ① Cualquier audio → **WAV PCM 16-bit** → **16 kHz sin aliasing** "
@@ -190,7 +189,7 @@ def main():
     args = ap.parse_args()
 
     demo = build_ui(default_model=args.model)
-    demo.queue().launch(server_name="0.0.0.0", server_port=args.port, share=args.share)
+    demo.queue().launch(theme=gr.themes.Soft(), css=CSS, show_error=True,server_name="0.0.0.0", server_port=args.port, share=args.share)
 
 
 if __name__ == "__main__":
